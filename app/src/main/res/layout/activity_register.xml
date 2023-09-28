@@ -72,7 +72,10 @@
                     android:id="@+id/edtDateBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
+                    android:clickable="false"
+                    android:datePickerMode="spinner"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
                     android:hint="fecha de nacimiento" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -137,7 +140,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:inputType="number"
+                    android:inputType="text"
                     android:id="@+id/edtTypeDocument"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -173,6 +176,23 @@
                 <EditText
                     android:inputType="textPassword"
                     android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Imgresa una contraseña" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                app:startIconDrawable="@drawable/lock"
+                app:endIconMode="password_toggle"
+                android:layout_margin="10dp"
+                android:id="@+id/tlyPasswordConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/edtPasswordConfirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Imgresa una contraseña" />
