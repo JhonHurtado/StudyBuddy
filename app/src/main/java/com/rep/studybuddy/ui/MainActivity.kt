@@ -24,18 +24,10 @@ import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var service: ApiService
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://studybuddy-backend.vercel.app")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        service = retrofit.create(ApiService::class.java)
 
 
         binding.txtIrRegistro.setOnClickListener {
@@ -103,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                         if (postLogIn != null) {
                             if (postLogIn.token.isNotEmpty() ){
                                 prefs.saveToken(postLogIn.token)
+                                prefs.saveIdUser(postLogIn.idUser)
                                 startActivity(Intent(this@MainActivity, StudyBuddyHome::class.java))
                             }
                         }
@@ -122,5 +115,13 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.e("TAG", "logInApi: ${e.message}")
         }
+    }
+    companion object{
+        private val retrofit = Retrofit.Builder()
+            .baseUrl("https://studybuddy-backend.vercel.app/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service: ApiService = retrofit.create(ApiService::class.java)
     }
 }

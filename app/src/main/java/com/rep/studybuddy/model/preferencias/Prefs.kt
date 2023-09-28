@@ -25,6 +25,18 @@ class Prefs(private val context: Context) {
         storage.edit().remove(SHARED_USER_TOKEN).apply()
     }
 
+    fun saveIdUser(idUser: String) {
+        storage.edit().putString("idUser", idUser).apply()
+    }
+
+    fun getIdUser(): String? {
+        return storage.getString("idUser", null)
+    }
+
+    fun deleteIdUser() {
+        storage.edit().remove("idUser").apply()
+    }
+
     fun saveRecuerdame(recuerdame: Boolean) {
         storage.edit().putBoolean("recuerdame", recuerdame).apply()
     }
@@ -33,5 +45,8 @@ class Prefs(private val context: Context) {
         return storage.getBoolean("recuerdame", false)
     }
 
+    fun clear() {
+        storage.edit().clear().apply()
+    }
 
 }

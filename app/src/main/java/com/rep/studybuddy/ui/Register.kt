@@ -13,6 +13,7 @@ import com.rep.studybuddy.databinding.ActivityRegisterBinding
 import com.rep.studybuddy.model.apiService.ApiService
 import com.rep.studybuddy.model.modelData.RegisterUser
 import com.rep.studybuddy.model.modelData.postResult
+import com.rep.studybuddy.ui.MainActivity.Companion.service
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
@@ -34,7 +35,6 @@ class Register : AppCompatActivity() {
     private lateinit var course: Number
     private lateinit var program: String
 
-    private lateinit var service: ApiService
 
 
 
@@ -46,12 +46,7 @@ class Register : AppCompatActivity() {
         binding.edtDateBirth.setOnClickListener {
             showDatePickerDialog()
         }
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://studybuddy-backend.vercel.app")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        service = retrofit.create(ApiService::class.java)
 
 
         binding.edtPassword.addTextChangedListener(object : TextWatcher {

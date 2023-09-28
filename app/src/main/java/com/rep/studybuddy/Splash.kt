@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Looper
+import android.util.Log
 import com.rep.studybuddy.R
 import com.rep.studybuddy.aplication.Aplication.Companion.prefs
 import com.rep.studybuddy.ui.MainActivity
@@ -22,13 +23,16 @@ class Splash : AppCompatActivity() {
 
             override fun onFinish() {
                 val recuerdame = prefs.getRecuerdame()
+                Log.e("TAG", "onFinish: $recuerdame", )
                 if (recuerdame){
                     val intent = Intent(this@Splash, StudyBuddyHome::class.java)
                     startActivity(intent)
                     finish()
+                }else{
+                    startActivity(Intent(this@Splash, MainActivity::class.java))
+                    finish()
                 }
-                startActivity(Intent(this@Splash, MainActivity::class.java))
-                finish()
+
             }
 
         }.start()
