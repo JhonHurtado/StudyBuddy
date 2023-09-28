@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
                         val postLogIn = response.body()
                         if (postLogIn != null) {
                             if (postLogIn.token.isNotEmpty() ){
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    postLogIn.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 prefs.saveToken(postLogIn.token)
                                 prefs.saveIdUser(postLogIn.idUser)
                                 startActivity(Intent(this@MainActivity, StudyBuddyHome::class.java))
@@ -102,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         response.errorBody()?.let {
                             Log.e("TAG", "logInApi: ${it.string()}")
-                            Toast.makeText(this@MainActivity, it.string().toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, "error al iniciar sesion", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
